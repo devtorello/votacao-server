@@ -1,14 +1,32 @@
-const { ApolloServer } = require('apollo-server')
 const { prisma } = require('./generated/prisma-client')
+const { importSchema } = require('graphql-import')
+const { ApolloServer } = require('apollo-server')
 
-const resolvers = {}
+const typeDefs = importSchema('./src/schema.graphql')
+
+const resolvers = {
+    Query: { // Equivale a GET
+        info: () => 'This is my api!'
+    },
+    Mutation: { // Equivale a POST, PUT, PATCH e DELETE
+        user: (parent, args) => {
+            const user = {
+                id: 1,
+                name: args.name,
+                email: args.email
+            }
+
+            return user
+        }
+    }
+}
 
 const server = new ApolloServer({
-    typeDefs: './model/schema.graphql',
+    typeDefs,
     resolvers,
-    context: req => {
+    context: request => {
         return {
-            ...req,
+            ...request,
             prisma
         }
     }
