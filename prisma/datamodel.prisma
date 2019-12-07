@@ -1,4 +1,24 @@
 type User {
   id: ID! @id
-  name: String!
+  firstName: String!
+  lastName: String!
+  email: String! @unique
+  password: String!
+  age: Int!
+  cpf: String! @unique
+  level: String! @default(value: "USER")
+}
+
+type Candidate {
+  id: ID! @id
+  fullName: String!
+  politicalOffice: String!
+  politicParty: String!
+  politicNumber: Int! @unique
+}
+
+type Vote {
+  id: ID! @id
+  candidateNum: Int! 
+  userId: String!
 }

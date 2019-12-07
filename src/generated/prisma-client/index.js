@@ -7,11 +7,19 @@ var models = [
   {
     name: "User",
     embedded: false
+  },
+  {
+    name: "Candidate",
+    embedded: false
+  },
+  {
+    name: "Vote",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `http://localhost:4466`
+  endpoint: `http://localhost:4466/voting`
 });
 exports.prisma = new exports.Prisma();

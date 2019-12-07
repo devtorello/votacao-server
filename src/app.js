@@ -4,26 +4,15 @@ const { ApolloServer } = require('apollo-server')
 
 const typeDefs = importSchema('./src/schema.graphql')
 
-const resolvers = {
-    Query: { // Equivale a GET
-        info: () => 'This is my api!'
-    },
-    Mutation: { // Equivale a POST, PUT, PATCH e DELETE
-        user: (parent, args) => {
-            const user = {
-                id: 1,
-                name: args.name,
-                email: args.email
-            }
-
-            return user
-        }
-    }
-}
+const { Mutation } = require('./controllers/Mutation')
+const { Query } = require('./controllers/Query')
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers,
+    resolvers: {
+        Query,
+        Mutation
+    },
     context: request => {
         return {
             ...request,

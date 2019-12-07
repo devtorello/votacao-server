@@ -8,11 +8,11 @@ services:
     environment:
       PRISMA_CONFIG: |
         port: 4466
-        managementApiSecret: rev-vota # activate cluster security by defining a secret
+        # managementApiSecret: rev-vota # activate cluster security by defining a secret
         databases:
           default:
             connector: mongo
-            uri: 'mongodb://tataiana:160298@mongo/rev-vota'
+            uri: 'mongodb://tataiana:160298@mongo'
   mongo:
     image: mongo:3.6
     restart: always

@@ -3,7 +3,15 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateUser {
+/* GraphQL */ `type AggregateCandidate {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type AggregateVote {
   count: Int!
 }
 
@@ -11,15 +19,178 @@ type BatchPayload {
   count: Long!
 }
 
+type Candidate {
+  id: ID!
+  fullName: String!
+  politicalOffice: String!
+  politicParty: String!
+  politicNumber: Int!
+}
+
+type CandidateConnection {
+  pageInfo: PageInfo!
+  edges: [CandidateEdge]!
+  aggregate: AggregateCandidate!
+}
+
+input CandidateCreateInput {
+  id: ID
+  fullName: String!
+  politicalOffice: String!
+  politicParty: String!
+  politicNumber: Int!
+}
+
+type CandidateEdge {
+  node: Candidate!
+  cursor: String!
+}
+
+enum CandidateOrderByInput {
+  id_ASC
+  id_DESC
+  fullName_ASC
+  fullName_DESC
+  politicalOffice_ASC
+  politicalOffice_DESC
+  politicParty_ASC
+  politicParty_DESC
+  politicNumber_ASC
+  politicNumber_DESC
+}
+
+type CandidatePreviousValues {
+  id: ID!
+  fullName: String!
+  politicalOffice: String!
+  politicParty: String!
+  politicNumber: Int!
+}
+
+type CandidateSubscriptionPayload {
+  mutation: MutationType!
+  node: Candidate
+  updatedFields: [String!]
+  previousValues: CandidatePreviousValues
+}
+
+input CandidateSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CandidateWhereInput
+  AND: [CandidateSubscriptionWhereInput!]
+}
+
+input CandidateUpdateInput {
+  fullName: String
+  politicalOffice: String
+  politicParty: String
+  politicNumber: Int
+}
+
+input CandidateUpdateManyMutationInput {
+  fullName: String
+  politicalOffice: String
+  politicParty: String
+  politicNumber: Int
+}
+
+input CandidateWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  fullName: String
+  fullName_not: String
+  fullName_in: [String!]
+  fullName_not_in: [String!]
+  fullName_lt: String
+  fullName_lte: String
+  fullName_gt: String
+  fullName_gte: String
+  fullName_contains: String
+  fullName_not_contains: String
+  fullName_starts_with: String
+  fullName_not_starts_with: String
+  fullName_ends_with: String
+  fullName_not_ends_with: String
+  politicalOffice: String
+  politicalOffice_not: String
+  politicalOffice_in: [String!]
+  politicalOffice_not_in: [String!]
+  politicalOffice_lt: String
+  politicalOffice_lte: String
+  politicalOffice_gt: String
+  politicalOffice_gte: String
+  politicalOffice_contains: String
+  politicalOffice_not_contains: String
+  politicalOffice_starts_with: String
+  politicalOffice_not_starts_with: String
+  politicalOffice_ends_with: String
+  politicalOffice_not_ends_with: String
+  politicParty: String
+  politicParty_not: String
+  politicParty_in: [String!]
+  politicParty_not_in: [String!]
+  politicParty_lt: String
+  politicParty_lte: String
+  politicParty_gt: String
+  politicParty_gte: String
+  politicParty_contains: String
+  politicParty_not_contains: String
+  politicParty_starts_with: String
+  politicParty_not_starts_with: String
+  politicParty_ends_with: String
+  politicParty_not_ends_with: String
+  politicNumber: Int
+  politicNumber_not: Int
+  politicNumber_in: [Int!]
+  politicNumber_not_in: [Int!]
+  politicNumber_lt: Int
+  politicNumber_lte: Int
+  politicNumber_gt: Int
+  politicNumber_gte: Int
+  AND: [CandidateWhereInput!]
+}
+
+input CandidateWhereUniqueInput {
+  id: ID
+  politicNumber: Int
+}
+
 scalar Long
 
 type Mutation {
+  createCandidate(data: CandidateCreateInput!): Candidate!
+  updateCandidate(data: CandidateUpdateInput!, where: CandidateWhereUniqueInput!): Candidate
+  updateManyCandidates(data: CandidateUpdateManyMutationInput!, where: CandidateWhereInput): BatchPayload!
+  upsertCandidate(where: CandidateWhereUniqueInput!, create: CandidateCreateInput!, update: CandidateUpdateInput!): Candidate!
+  deleteCandidate(where: CandidateWhereUniqueInput!): Candidate
+  deleteManyCandidates(where: CandidateWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createVote(data: VoteCreateInput!): Vote!
+  updateVote(data: VoteUpdateInput!, where: VoteWhereUniqueInput!): Vote
+  updateManyVotes(data: VoteUpdateManyMutationInput!, where: VoteWhereInput): BatchPayload!
+  upsertVote(where: VoteWhereUniqueInput!, create: VoteCreateInput!, update: VoteUpdateInput!): Vote!
+  deleteVote(where: VoteWhereUniqueInput!): Vote
+  deleteManyVotes(where: VoteWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -40,19 +211,33 @@ type PageInfo {
 }
 
 type Query {
+  candidate(where: CandidateWhereUniqueInput!): Candidate
+  candidates(where: CandidateWhereInput, orderBy: CandidateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Candidate]!
+  candidatesConnection(where: CandidateWhereInput, orderBy: CandidateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CandidateConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  vote(where: VoteWhereUniqueInput!): Vote
+  votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote]!
+  votesConnection(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
   node(id: ID!): Node
 }
 
 type Subscription {
+  candidate(where: CandidateSubscriptionWhereInput): CandidateSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
 }
 
 type User {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  age: Int!
+  cpf: String!
+  level: String!
 }
 
 type UserConnection {
@@ -63,7 +248,13 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  name: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  age: Int!
+  cpf: String!
+  level: String
 }
 
 type UserEdge {
@@ -74,13 +265,31 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  age_ASC
+  age_DESC
+  cpf_ASC
+  cpf_DESC
+  level_ASC
+  level_DESC
 }
 
 type UserPreviousValues {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  age: Int!
+  cpf: String!
+  level: String!
 }
 
 type UserSubscriptionPayload {
@@ -100,11 +309,23 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  name: String
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  age: Int
+  cpf: String
+  level: String
 }
 
 input UserUpdateManyMutationInput {
-  name: String
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  age: Int
+  cpf: String
+  level: String
 }
 
 input UserWhereInput {
@@ -122,24 +343,212 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  age: Int
+  age_not: Int
+  age_in: [Int!]
+  age_not_in: [Int!]
+  age_lt: Int
+  age_lte: Int
+  age_gt: Int
+  age_gte: Int
+  cpf: String
+  cpf_not: String
+  cpf_in: [String!]
+  cpf_not_in: [String!]
+  cpf_lt: String
+  cpf_lte: String
+  cpf_gt: String
+  cpf_gte: String
+  cpf_contains: String
+  cpf_not_contains: String
+  cpf_starts_with: String
+  cpf_not_starts_with: String
+  cpf_ends_with: String
+  cpf_not_ends_with: String
+  level: String
+  level_not: String
+  level_in: [String!]
+  level_not_in: [String!]
+  level_lt: String
+  level_lte: String
+  level_gt: String
+  level_gte: String
+  level_contains: String
+  level_not_contains: String
+  level_starts_with: String
+  level_not_starts_with: String
+  level_ends_with: String
+  level_not_ends_with: String
   AND: [UserWhereInput!]
 }
 
 input UserWhereUniqueInput {
+  id: ID
+  email: String
+  cpf: String
+}
+
+type Vote {
+  id: ID!
+  candidateNum: Int!
+  userId: String!
+}
+
+type VoteConnection {
+  pageInfo: PageInfo!
+  edges: [VoteEdge]!
+  aggregate: AggregateVote!
+}
+
+input VoteCreateInput {
+  id: ID
+  candidateNum: Int!
+  userId: String!
+}
+
+type VoteEdge {
+  node: Vote!
+  cursor: String!
+}
+
+enum VoteOrderByInput {
+  id_ASC
+  id_DESC
+  candidateNum_ASC
+  candidateNum_DESC
+  userId_ASC
+  userId_DESC
+}
+
+type VotePreviousValues {
+  id: ID!
+  candidateNum: Int!
+  userId: String!
+}
+
+type VoteSubscriptionPayload {
+  mutation: MutationType!
+  node: Vote
+  updatedFields: [String!]
+  previousValues: VotePreviousValues
+}
+
+input VoteSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: VoteWhereInput
+  AND: [VoteSubscriptionWhereInput!]
+}
+
+input VoteUpdateInput {
+  candidateNum: Int
+  userId: String
+}
+
+input VoteUpdateManyMutationInput {
+  candidateNum: Int
+  userId: String
+}
+
+input VoteWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  candidateNum: Int
+  candidateNum_not: Int
+  candidateNum_in: [Int!]
+  candidateNum_not_in: [Int!]
+  candidateNum_lt: Int
+  candidateNum_lte: Int
+  candidateNum_gt: Int
+  candidateNum_gte: Int
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [VoteWhereInput!]
+}
+
+input VoteWhereUniqueInput {
   id: ID
 }
 `
