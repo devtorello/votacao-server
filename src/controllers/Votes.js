@@ -9,9 +9,9 @@ const newVote = async (parent, args, ctx) => {
 
 const countCandidateVotes = async (parent, args, ctx) => { 
     const count = await ctx.prisma
-    .votesConnection({ where: { candidateNum: args.candidateNum } })
-    .aggregate()
-    .count()
+        .votesConnection({ where: { candidateNum: args.candidateNum } })
+        .aggregate()
+        .count()
 
     return {
         total: count

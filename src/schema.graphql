@@ -1,7 +1,7 @@
 type Query {
   # Object User
   allUsers: [User]
-  fetchUser(cpf: String!): User
+  fetchUser(email: String!): User
 
   # Object Candidate
   allCandidates: [Candidate]
