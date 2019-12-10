@@ -19,11 +19,9 @@ const countCandidateVotes = async (parent, args, ctx) => {
 }
 
 const getUserVotes = (parent, args, ctx) => {
-    const votes = ctx.prisma.votes({ where: { userId: args.userId } })
-
-    return {
-        votes
-    }
+    const vote = ctx.prisma.vote({ userId: args.userId })
+    
+    return vote
 }
 
 module.exports = {

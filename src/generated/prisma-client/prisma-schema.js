@@ -22,9 +22,9 @@ type BatchPayload {
 type Candidate {
   id: ID!
   fullName: String!
-  politicalOffice: String!
-  politicParty: String!
-  politicNumber: Int!
+  RA: String!
+  Turma: String!
+  URL: String!
 }
 
 type CandidateConnection {
@@ -36,9 +36,9 @@ type CandidateConnection {
 input CandidateCreateInput {
   id: ID
   fullName: String!
-  politicalOffice: String!
-  politicParty: String!
-  politicNumber: Int!
+  RA: String!
+  Turma: String!
+  URL: String!
 }
 
 type CandidateEdge {
@@ -51,20 +51,20 @@ enum CandidateOrderByInput {
   id_DESC
   fullName_ASC
   fullName_DESC
-  politicalOffice_ASC
-  politicalOffice_DESC
-  politicParty_ASC
-  politicParty_DESC
-  politicNumber_ASC
-  politicNumber_DESC
+  RA_ASC
+  RA_DESC
+  Turma_ASC
+  Turma_DESC
+  URL_ASC
+  URL_DESC
 }
 
 type CandidatePreviousValues {
   id: ID!
   fullName: String!
-  politicalOffice: String!
-  politicParty: String!
-  politicNumber: Int!
+  RA: String!
+  Turma: String!
+  URL: String!
 }
 
 type CandidateSubscriptionPayload {
@@ -85,16 +85,16 @@ input CandidateSubscriptionWhereInput {
 
 input CandidateUpdateInput {
   fullName: String
-  politicalOffice: String
-  politicParty: String
-  politicNumber: Int
+  RA: String
+  Turma: String
+  URL: String
 }
 
 input CandidateUpdateManyMutationInput {
   fullName: String
-  politicalOffice: String
-  politicParty: String
-  politicNumber: Int
+  RA: String
+  Turma: String
+  URL: String
 }
 
 input CandidateWhereInput {
@@ -126,48 +126,54 @@ input CandidateWhereInput {
   fullName_not_starts_with: String
   fullName_ends_with: String
   fullName_not_ends_with: String
-  politicalOffice: String
-  politicalOffice_not: String
-  politicalOffice_in: [String!]
-  politicalOffice_not_in: [String!]
-  politicalOffice_lt: String
-  politicalOffice_lte: String
-  politicalOffice_gt: String
-  politicalOffice_gte: String
-  politicalOffice_contains: String
-  politicalOffice_not_contains: String
-  politicalOffice_starts_with: String
-  politicalOffice_not_starts_with: String
-  politicalOffice_ends_with: String
-  politicalOffice_not_ends_with: String
-  politicParty: String
-  politicParty_not: String
-  politicParty_in: [String!]
-  politicParty_not_in: [String!]
-  politicParty_lt: String
-  politicParty_lte: String
-  politicParty_gt: String
-  politicParty_gte: String
-  politicParty_contains: String
-  politicParty_not_contains: String
-  politicParty_starts_with: String
-  politicParty_not_starts_with: String
-  politicParty_ends_with: String
-  politicParty_not_ends_with: String
-  politicNumber: Int
-  politicNumber_not: Int
-  politicNumber_in: [Int!]
-  politicNumber_not_in: [Int!]
-  politicNumber_lt: Int
-  politicNumber_lte: Int
-  politicNumber_gt: Int
-  politicNumber_gte: Int
+  RA: String
+  RA_not: String
+  RA_in: [String!]
+  RA_not_in: [String!]
+  RA_lt: String
+  RA_lte: String
+  RA_gt: String
+  RA_gte: String
+  RA_contains: String
+  RA_not_contains: String
+  RA_starts_with: String
+  RA_not_starts_with: String
+  RA_ends_with: String
+  RA_not_ends_with: String
+  Turma: String
+  Turma_not: String
+  Turma_in: [String!]
+  Turma_not_in: [String!]
+  Turma_lt: String
+  Turma_lte: String
+  Turma_gt: String
+  Turma_gte: String
+  Turma_contains: String
+  Turma_not_contains: String
+  Turma_starts_with: String
+  Turma_not_starts_with: String
+  Turma_ends_with: String
+  Turma_not_ends_with: String
+  URL: String
+  URL_not: String
+  URL_in: [String!]
+  URL_not_in: [String!]
+  URL_lt: String
+  URL_lte: String
+  URL_gt: String
+  URL_gte: String
+  URL_contains: String
+  URL_not_contains: String
+  URL_starts_with: String
+  URL_not_starts_with: String
+  URL_ends_with: String
+  URL_not_ends_with: String
   AND: [CandidateWhereInput!]
 }
 
 input CandidateWhereUniqueInput {
   id: ID
-  politicNumber: Int
+  RA: String
 }
 
 scalar Long
@@ -233,11 +239,10 @@ type User {
   id: ID!
   firstName: String!
   lastName: String!
-  email: String!
+  RA: String!
   password: String!
-  age: Int!
-  cpf: String!
   level: String!
+  votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
 }
 
 type UserConnection {
@@ -250,11 +255,10 @@ input UserCreateInput {
   id: ID
   firstName: String!
   lastName: String!
-  email: String!
+  RA: String!
   password: String!
-  age: Int!
-  cpf: String!
   level: String
+  votes: VoteCreateManyInput
 }
 
 type UserEdge {
@@ -269,14 +273,10 @@ enum UserOrderByInput {
   firstName_DESC
   lastName_ASC
   lastName_DESC
-  email_ASC
-  email_DESC
+  RA_ASC
+  RA_DESC
   password_ASC
   password_DESC
-  age_ASC
-  age_DESC
-  cpf_ASC
-  cpf_DESC
   level_ASC
   level_DESC
 }
@@ -285,10 +285,8 @@ type UserPreviousValues {
   id: ID!
   firstName: String!
   lastName: String!
-  email: String!
+  RA: String!
   password: String!
-  age: Int!
-  cpf: String!
   level: String!
 }
 
@@ -311,20 +309,17 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   firstName: String
   lastName: String
-  email: String
+  RA: String
   password: String
-  age: Int
-  cpf: String
   level: String
+  votes: VoteUpdateManyInput
 }
 
 input UserUpdateManyMutationInput {
   firstName: String
   lastName: String
-  email: String
+  RA: String
   password: String
-  age: Int
-  cpf: String
   level: String
 }
 
@@ -371,20 +366,20 @@ input UserWhereInput {
   lastName_not_starts_with: String
   lastName_ends_with: String
   lastName_not_ends_with: String
-  email: String
-  email_not: String
-  email_in: [String!]
-  email_not_in: [String!]
-  email_lt: String
-  email_lte: String
-  email_gt: String
-  email_gte: String
-  email_contains: String
-  email_not_contains: String
-  email_starts_with: String
-  email_not_starts_with: String
-  email_ends_with: String
-  email_not_ends_with: String
+  RA: String
+  RA_not: String
+  RA_in: [String!]
+  RA_not_in: [String!]
+  RA_lt: String
+  RA_lte: String
+  RA_gt: String
+  RA_gte: String
+  RA_contains: String
+  RA_not_contains: String
+  RA_starts_with: String
+  RA_not_starts_with: String
+  RA_ends_with: String
+  RA_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -399,28 +394,6 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  age: Int
-  age_not: Int
-  age_in: [Int!]
-  age_not_in: [Int!]
-  age_lt: Int
-  age_lte: Int
-  age_gt: Int
-  age_gte: Int
-  cpf: String
-  cpf_not: String
-  cpf_in: [String!]
-  cpf_not_in: [String!]
-  cpf_lt: String
-  cpf_lte: String
-  cpf_gt: String
-  cpf_gte: String
-  cpf_contains: String
-  cpf_not_contains: String
-  cpf_starts_with: String
-  cpf_not_starts_with: String
-  cpf_ends_with: String
-  cpf_not_ends_with: String
   level: String
   level_not: String
   level_in: [String!]
@@ -435,18 +408,18 @@ input UserWhereInput {
   level_not_starts_with: String
   level_ends_with: String
   level_not_ends_with: String
+  votes_some: VoteWhereInput
   AND: [UserWhereInput!]
 }
 
 input UserWhereUniqueInput {
   id: ID
-  email: String
-  cpf: String
+  RA: String
 }
 
 type Vote {
   id: ID!
-  candidateNum: Int!
+  candidateRA: String!
   userId: String!
 }
 
@@ -458,8 +431,13 @@ type VoteConnection {
 
 input VoteCreateInput {
   id: ID
-  candidateNum: Int!
+  candidateRA: String!
   userId: String!
+}
+
+input VoteCreateManyInput {
+  create: [VoteCreateInput!]
+  connect: [VoteWhereUniqueInput!]
 }
 
 type VoteEdge {
@@ -470,16 +448,64 @@ type VoteEdge {
 enum VoteOrderByInput {
   id_ASC
   id_DESC
-  candidateNum_ASC
-  candidateNum_DESC
+  candidateRA_ASC
+  candidateRA_DESC
   userId_ASC
   userId_DESC
 }
 
 type VotePreviousValues {
   id: ID!
-  candidateNum: Int!
+  candidateRA: String!
   userId: String!
+}
+
+input VoteScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  candidateRA: String
+  candidateRA_not: String
+  candidateRA_in: [String!]
+  candidateRA_not_in: [String!]
+  candidateRA_lt: String
+  candidateRA_lte: String
+  candidateRA_gt: String
+  candidateRA_gte: String
+  candidateRA_contains: String
+  candidateRA_not_contains: String
+  candidateRA_starts_with: String
+  candidateRA_not_starts_with: String
+  candidateRA_ends_with: String
+  candidateRA_not_ends_with: String
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  AND: [VoteScalarWhereInput!]
+  OR: [VoteScalarWhereInput!]
+  NOT: [VoteScalarWhereInput!]
 }
 
 type VoteSubscriptionPayload {
@@ -498,14 +524,52 @@ input VoteSubscriptionWhereInput {
   AND: [VoteSubscriptionWhereInput!]
 }
 
-input VoteUpdateInput {
-  candidateNum: Int
+input VoteUpdateDataInput {
+  candidateRA: String
   userId: String
 }
 
-input VoteUpdateManyMutationInput {
-  candidateNum: Int
+input VoteUpdateInput {
+  candidateRA: String
   userId: String
+}
+
+input VoteUpdateManyDataInput {
+  candidateRA: String
+  userId: String
+}
+
+input VoteUpdateManyInput {
+  create: [VoteCreateInput!]
+  update: [VoteUpdateWithWhereUniqueNestedInput!]
+  upsert: [VoteUpsertWithWhereUniqueNestedInput!]
+  delete: [VoteWhereUniqueInput!]
+  connect: [VoteWhereUniqueInput!]
+  set: [VoteWhereUniqueInput!]
+  disconnect: [VoteWhereUniqueInput!]
+  deleteMany: [VoteScalarWhereInput!]
+  updateMany: [VoteUpdateManyWithWhereNestedInput!]
+}
+
+input VoteUpdateManyMutationInput {
+  candidateRA: String
+  userId: String
+}
+
+input VoteUpdateManyWithWhereNestedInput {
+  where: VoteScalarWhereInput!
+  data: VoteUpdateManyDataInput!
+}
+
+input VoteUpdateWithWhereUniqueNestedInput {
+  where: VoteWhereUniqueInput!
+  data: VoteUpdateDataInput!
+}
+
+input VoteUpsertWithWhereUniqueNestedInput {
+  where: VoteWhereUniqueInput!
+  update: VoteUpdateDataInput!
+  create: VoteCreateInput!
 }
 
 input VoteWhereInput {
@@ -523,14 +587,20 @@ input VoteWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  candidateNum: Int
-  candidateNum_not: Int
-  candidateNum_in: [Int!]
-  candidateNum_not_in: [Int!]
-  candidateNum_lt: Int
-  candidateNum_lte: Int
-  candidateNum_gt: Int
-  candidateNum_gte: Int
+  candidateRA: String
+  candidateRA_not: String
+  candidateRA_in: [String!]
+  candidateRA_not_in: [String!]
+  candidateRA_lt: String
+  candidateRA_lte: String
+  candidateRA_gt: String
+  candidateRA_gte: String
+  candidateRA_contains: String
+  candidateRA_not_contains: String
+  candidateRA_starts_with: String
+  candidateRA_not_starts_with: String
+  candidateRA_ends_with: String
+  candidateRA_not_ends_with: String
   userId: String
   userId_not: String
   userId_in: [String!]
@@ -550,6 +620,7 @@ input VoteWhereInput {
 
 input VoteWhereUniqueInput {
   id: ID
+  userId: String
 }
 `
       }

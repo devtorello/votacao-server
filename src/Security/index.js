@@ -21,9 +21,9 @@ const comparePass = async (pass, hashed) => await bcrypt.compare(pass, hashed)
  * Generate auth token.
  * 
  * @param {String} id User ID
- * @param {String} email User email 
+ * @param {String} ra User ra 
  */
-const getToken = async (id, email) => jwt.sign({ id, email }, 'voting-system')
+const getToken = async (id, ra) => jwt.sign({ id, ra }, 'voting-system')
 
 module.exports = {
     hashPass,

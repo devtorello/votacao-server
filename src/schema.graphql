@@ -1,37 +1,35 @@
 type Query {
   # Object User
   allUsers: [User]
-  fetchUser(email: String!): User
+  fetchUser(RA: String!): User
 
   # Object Candidate
   allCandidates: [Candidate]
-  fetchCandidate(politicNumber: Int!): Candidate
+  fetchCandidate(RA: String!): Candidate
 
   # Object Votes
-  countCandidateVotes(candidateNum: Int!): VotesCount
+  countCandidateVotes(RA: String!): VotesCount
   getUserVotes(userId: String!): UserVotes
 }
 
 type Mutation {
   # Object User
-  signUp(firstName: String!, lastName: String!, email: String!, password: String!, age: Int!, cpf: String!, level: String): User
-  signIn(email: String!, password: String!): AuthResponse
+  signUp(firstName: String!, lastName: String!, password: String!, RA: String!, level: String): User
+  signIn(RA: String!, password: String!): AuthResponse
 
   # Object Candidate
-  createCandidate(fullName: String!, politicalOffice: String!, politicParty: String!, politicNumber: Int!): Candidate
+  createCandidate(fullName: String!, RA: String!, Turma: String!, URL: String!): Candidate
 
   # Object Votes
-  newVote(candidateNum: Int!, userId: String!): Vote
+  newVote(candidateRA: String!, userId: String!): Vote
 }
 
 type User {
   id: ID!
   firstName: String!
   lastName: String!
-  email: String!
+  RA: String!
   password: String!
-  age: Int!
-  cpf: String!
   level: String!
   votes: [Vote]
 }
@@ -39,21 +37,21 @@ type User {
 type Candidate {
   id: ID!
   fullName: String!
-  politicalOffice: String!
-  politicParty: String!
-  politicNumber: Int!
+  RA: String!
+  Turma: String!
+  URL: String!
   votes: [Vote]
 }
 
 type Vote {
   id: ID!
-  candidateNum: Int!
+  candidateRA: String!
   userId: String!
 }
 
 type AuthResponse {
   token: String!
-  email: String!
+  RA: String!
 }
 
 type VotesCount {
@@ -61,5 +59,7 @@ type VotesCount {
 }
 
 type UserVotes {
-  votes: [Vote]
+  id: String
+  candidateRA: String
+  userId: String
 }

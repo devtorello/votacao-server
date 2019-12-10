@@ -2,23 +2,22 @@ type User {
   id: ID! @id
   firstName: String!
   lastName: String!
-  email: String! @unique
+  RA: String! @unique
   password: String!
-  age: Int!
-  cpf: String! @unique
   level: String! @default(value: "USER")
+  votes: [Vote] @relation(link: INLINE)
 }
 
 type Candidate {
   id: ID! @id
   fullName: String!
-  politicalOffice: String!
-  politicParty: String!
-  politicNumber: Int! @unique
+  RA: String! @unique
+  Turma: String!
+  URL: String!
 }
 
 type Vote {
   id: ID! @id
-  candidateNum: Int! 
-  userId: String!
+  candidateRA: String! 
+  userId: String! @unique
 }
