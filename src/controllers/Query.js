@@ -1,6 +1,6 @@
 const { allUsers, fetchUser } = require('./User')
 const { allCandidates, fetchCandidate } = require('./Candidate')
-const { countCandidateVotes, getUserVotes } = require('./Votes')
+const { countCandidateVotes, getUserVotes, allVotes } = require('./Votes')
 
 module.exports = {
     Query: {
@@ -14,6 +14,7 @@ module.exports = {
 
         // VOTES CONTROLLER
         countCandidateVotes,
-        getUserVotes
+        getUserVotes,
+        allVotes
     }
 }

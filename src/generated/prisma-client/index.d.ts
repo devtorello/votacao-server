@@ -179,6 +179,14 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type VoteOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "candidateRA_ASC"
+  | "candidateRA_DESC"
+  | "userId_ASC"
+  | "userId_DESC";
+
 export type CandidateOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -190,14 +198,6 @@ export type CandidateOrderByInput =
   | "Turma_DESC"
   | "URL_ASC"
   | "URL_DESC";
-
-export type VoteOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "candidateRA_ASC"
-  | "candidateRA_DESC"
-  | "userId_ASC"
-  | "userId_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -219,6 +219,52 @@ export type CandidateWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   RA?: Maybe<String>;
 }>;
+
+export interface VoteWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  candidateRA?: Maybe<String>;
+  candidateRA_not?: Maybe<String>;
+  candidateRA_in?: Maybe<String[] | String>;
+  candidateRA_not_in?: Maybe<String[] | String>;
+  candidateRA_lt?: Maybe<String>;
+  candidateRA_lte?: Maybe<String>;
+  candidateRA_gt?: Maybe<String>;
+  candidateRA_gte?: Maybe<String>;
+  candidateRA_contains?: Maybe<String>;
+  candidateRA_not_contains?: Maybe<String>;
+  candidateRA_starts_with?: Maybe<String>;
+  candidateRA_not_starts_with?: Maybe<String>;
+  candidateRA_ends_with?: Maybe<String>;
+  candidateRA_not_ends_with?: Maybe<String>;
+  userId?: Maybe<String>;
+  userId_not?: Maybe<String>;
+  userId_in?: Maybe<String[] | String>;
+  userId_not_in?: Maybe<String[] | String>;
+  userId_lt?: Maybe<String>;
+  userId_lte?: Maybe<String>;
+  userId_gt?: Maybe<String>;
+  userId_gte?: Maybe<String>;
+  userId_contains?: Maybe<String>;
+  userId_not_contains?: Maybe<String>;
+  userId_starts_with?: Maybe<String>;
+  userId_not_starts_with?: Maybe<String>;
+  userId_ends_with?: Maybe<String>;
+  userId_not_ends_with?: Maybe<String>;
+  AND?: Maybe<VoteWhereInput[] | VoteWhereInput>;
+}
 
 export interface CandidateWhereInput {
   id?: Maybe<ID_Input>;
@@ -291,6 +337,7 @@ export interface CandidateWhereInput {
   URL_not_starts_with?: Maybe<String>;
   URL_ends_with?: Maybe<String>;
   URL_not_ends_with?: Maybe<String>;
+  votes_some?: Maybe<VoteWhereInput>;
   AND?: Maybe<CandidateWhereInput[] | CandidateWhereInput>;
 }
 
@@ -298,52 +345,6 @@ export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   RA?: Maybe<String>;
 }>;
-
-export interface VoteWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  candidateRA?: Maybe<String>;
-  candidateRA_not?: Maybe<String>;
-  candidateRA_in?: Maybe<String[] | String>;
-  candidateRA_not_in?: Maybe<String[] | String>;
-  candidateRA_lt?: Maybe<String>;
-  candidateRA_lte?: Maybe<String>;
-  candidateRA_gt?: Maybe<String>;
-  candidateRA_gte?: Maybe<String>;
-  candidateRA_contains?: Maybe<String>;
-  candidateRA_not_contains?: Maybe<String>;
-  candidateRA_starts_with?: Maybe<String>;
-  candidateRA_not_starts_with?: Maybe<String>;
-  candidateRA_ends_with?: Maybe<String>;
-  candidateRA_not_ends_with?: Maybe<String>;
-  userId?: Maybe<String>;
-  userId_not?: Maybe<String>;
-  userId_in?: Maybe<String[] | String>;
-  userId_not_in?: Maybe<String[] | String>;
-  userId_lt?: Maybe<String>;
-  userId_lte?: Maybe<String>;
-  userId_gt?: Maybe<String>;
-  userId_gte?: Maybe<String>;
-  userId_contains?: Maybe<String>;
-  userId_not_contains?: Maybe<String>;
-  userId_starts_with?: Maybe<String>;
-  userId_not_starts_with?: Maybe<String>;
-  userId_ends_with?: Maybe<String>;
-  userId_not_ends_with?: Maybe<String>;
-  AND?: Maybe<VoteWhereInput[] | VoteWhereInput>;
-}
 
 export interface UserWhereInput {
   id?: Maybe<ID_Input>;
@@ -445,29 +446,6 @@ export interface CandidateCreateInput {
   RA: String;
   Turma: String;
   URL: String;
-}
-
-export interface CandidateUpdateInput {
-  fullName?: Maybe<String>;
-  RA?: Maybe<String>;
-  Turma?: Maybe<String>;
-  URL?: Maybe<String>;
-}
-
-export interface CandidateUpdateManyMutationInput {
-  fullName?: Maybe<String>;
-  RA?: Maybe<String>;
-  Turma?: Maybe<String>;
-  URL?: Maybe<String>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  firstName: String;
-  lastName: String;
-  RA: String;
-  password: String;
-  level?: Maybe<String>;
   votes?: Maybe<VoteCreateManyInput>;
 }
 
@@ -482,12 +460,11 @@ export interface VoteCreateInput {
   userId: String;
 }
 
-export interface UserUpdateInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+export interface CandidateUpdateInput {
+  fullName?: Maybe<String>;
   RA?: Maybe<String>;
-  password?: Maybe<String>;
-  level?: Maybe<String>;
+  Turma?: Maybe<String>;
+  URL?: Maybe<String>;
   votes?: Maybe<VoteUpdateManyInput>;
 }
 
@@ -585,6 +562,32 @@ export interface VoteUpdateManyDataInput {
   userId?: Maybe<String>;
 }
 
+export interface CandidateUpdateManyMutationInput {
+  fullName?: Maybe<String>;
+  RA?: Maybe<String>;
+  Turma?: Maybe<String>;
+  URL?: Maybe<String>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  firstName: String;
+  lastName: String;
+  RA: String;
+  password: String;
+  level?: Maybe<String>;
+  votes?: Maybe<VoteCreateManyInput>;
+}
+
+export interface UserUpdateInput {
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  RA?: Maybe<String>;
+  password?: Maybe<String>;
+  level?: Maybe<String>;
+  votes?: Maybe<VoteUpdateManyInput>;
+}
+
 export interface UserUpdateManyMutationInput {
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -650,6 +653,15 @@ export interface CandidatePromise extends Promise<Candidate>, Fragmentable {
   RA: () => Promise<String>;
   Turma: () => Promise<String>;
   URL: () => Promise<String>;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface CandidateSubscription
@@ -660,6 +672,15 @@ export interface CandidateSubscription
   RA: () => Promise<AsyncIterator<String>>;
   Turma: () => Promise<AsyncIterator<String>>;
   URL: () => Promise<AsyncIterator<String>>;
+  votes: <T = Promise<AsyncIterator<VoteSubscription>>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface CandidateNullablePromise
@@ -670,6 +691,43 @@ export interface CandidateNullablePromise
   RA: () => Promise<String>;
   Turma: () => Promise<String>;
   URL: () => Promise<String>;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface Vote {
+  id: ID_Output;
+  candidateRA: String;
+  userId: String;
+}
+
+export interface VotePromise extends Promise<Vote>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  candidateRA: () => Promise<String>;
+  userId: () => Promise<String>;
+}
+
+export interface VoteSubscription
+  extends Promise<AsyncIterator<Vote>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  candidateRA: () => Promise<AsyncIterator<String>>;
+  userId: () => Promise<AsyncIterator<String>>;
+}
+
+export interface VoteNullablePromise
+  extends Promise<Vote | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  candidateRA: () => Promise<String>;
+  userId: () => Promise<String>;
 }
 
 export interface CandidateConnection {
@@ -816,34 +874,6 @@ export interface UserNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-}
-
-export interface Vote {
-  id: ID_Output;
-  candidateRA: String;
-  userId: String;
-}
-
-export interface VotePromise extends Promise<Vote>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  candidateRA: () => Promise<String>;
-  userId: () => Promise<String>;
-}
-
-export interface VoteSubscription
-  extends Promise<AsyncIterator<Vote>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  candidateRA: () => Promise<AsyncIterator<String>>;
-  userId: () => Promise<AsyncIterator<String>>;
-}
-
-export interface VoteNullablePromise
-  extends Promise<Vote | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  candidateRA: () => Promise<String>;
-  userId: () => Promise<String>;
 }
 
 export interface UserConnection {

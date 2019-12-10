@@ -8,8 +8,9 @@ type Query {
   fetchCandidate(RA: String!): Candidate
 
   # Object Votes
-  countCandidateVotes(RA: String!): VotesCount
-  getUserVotes(userId: String!): UserVotes
+  allVotes: [Vote]
+  countCandidateVotes(candidateRA: String!): VotesCount
+  getUserVotes: UserVotes
 }
 
 type Mutation {

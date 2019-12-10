@@ -25,8 +25,11 @@ const comparePass = async (pass, hashed) => await bcrypt.compare(pass, hashed)
  */
 const getToken = async (id, ra) => jwt.sign({ id, ra }, 'voting-system')
 
+const decodeToken = (token, secret) => jwt.verify(token, secret)
+
 module.exports = {
     hashPass,
     comparePass,
-    getToken
+    getToken,
+    decodeToken
 }

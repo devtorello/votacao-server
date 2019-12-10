@@ -25,6 +25,7 @@ type Candidate {
   RA: String!
   Turma: String!
   URL: String!
+  votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
 }
 
 type CandidateConnection {
@@ -39,6 +40,7 @@ input CandidateCreateInput {
   RA: String!
   Turma: String!
   URL: String!
+  votes: VoteCreateManyInput
 }
 
 type CandidateEdge {
@@ -88,6 +90,7 @@ input CandidateUpdateInput {
   RA: String
   Turma: String
   URL: String
+  votes: VoteUpdateManyInput
 }
 
 input CandidateUpdateManyMutationInput {
@@ -168,6 +171,7 @@ input CandidateWhereInput {
   URL_not_starts_with: String
   URL_ends_with: String
   URL_not_ends_with: String
+  votes_some: VoteWhereInput
   AND: [CandidateWhereInput!]
 }
 
