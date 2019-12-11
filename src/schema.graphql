@@ -20,7 +20,7 @@ type Mutation {
 
   # Object Candidate
   createCandidate(fullName: String!, RA: String!, Turma: String!, URL: String!): Candidate
-
+  deleteCandidate(id: String!): Candidate
   # Object Votes
   newVote(candidateRA: String!): Vote
 }
