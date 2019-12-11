@@ -18,7 +18,7 @@ const allUsers = (parent, args, ctx) => ctx.prisma.users()
  * @param {*} args Arguments passed to the API
  * @param {*} ctx Context in order to use prisma
  */
-const fetchUser = (parent, args, ctx) => ctx.prisma.user({ RA: args.CPF })
+const fetchUser = (parent, args, ctx) => ctx.prisma.user({ CPF: ctx.CPF })
 
 // SPACE RESERVED: MUTATIONS
 

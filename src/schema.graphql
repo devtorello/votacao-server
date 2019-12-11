@@ -1,7 +1,7 @@
 type Query {
   # Object User
   allUsers: [User]
-  fetchUser(CPF: String!): User
+  fetchUser(CPF: String): User
 
   # Object Candidate
   allCandidates: [Candidate]
@@ -20,6 +20,7 @@ type Mutation {
 
   # Object Candidate
   createCandidate(fullName: String!, CPF: String!, Apartamento: String!, URL: String!): Candidate
+  deleteCandidate(id: String!): Candidate
 
   # Object Votes
   newVote(CPF: String!): Vote

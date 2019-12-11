@@ -23,7 +23,7 @@ const server = new ApolloServer({
             ...req,
             prisma,
             id: data ? data.id : undefined,
-            ra: data ? data.ra : undefined
+            CPF: data ? data.CPF : undefined
         }
     }
 })

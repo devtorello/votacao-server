@@ -21,9 +21,9 @@ const comparePass = async (pass, hashed) => await bcrypt.compare(pass, hashed)
  * Generate auth token.
  * 
  * @param {String} id User ID
- * @param {String} ra User ra 
+ * @param {String} CPF User CPF 
  */
-const getToken = async (id, ra) => jwt.sign({ id, ra }, 'voting-system')
+const getToken = async (id, CPF) => jwt.sign({ id, CPF }, 'voting-system')
 
 const decodeToken = (token, secret) => jwt.verify(token, secret)
 

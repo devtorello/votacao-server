@@ -1,5 +1,5 @@
 const { signUp, signIn } = require('./User')
-const { createCandidate } = require('./Candidate')
+const { createCandidate, deleteCandidate } = require('./Candidate')
 const { newVote } = require('./Votes')
 
 module.exports = {
@@ -10,6 +10,7 @@ module.exports = {
 
         // CANDIDATE CONTROLLER
         createCandidate,
+        deleteCandidate,
 
         // VOTE CONTROLLER
         newVote

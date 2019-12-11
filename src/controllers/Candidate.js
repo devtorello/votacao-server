@@ -36,9 +36,19 @@ const createCandidate = async (parent, args, ctx) => {
     return candidate
 }
 
+const deleteCandidate = async (parent, args, ctx) => {
+    const candidate = await ctx.prisma.deleteCandidate({ id: args.id })
+
+    if (!candidate)
+        throw new Error('Error on deleting the candidate!')
+
+    return candidate
+}
+
 module.exports = {
     allCandidates,
     fetchCandidate,
 
-    createCandidate
+    createCandidate,
+    deleteCandidate
 }
