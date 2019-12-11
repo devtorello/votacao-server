@@ -22,8 +22,8 @@ type BatchPayload {
 type Candidate {
   id: ID!
   fullName: String!
-  RA: String!
-  Turma: String!
+  CPF: String!
+  Apartamento: String!
   URL: String!
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
 }
@@ -37,8 +37,8 @@ type CandidateConnection {
 input CandidateCreateInput {
   id: ID
   fullName: String!
-  RA: String!
-  Turma: String!
+  CPF: String!
+  Apartamento: String!
   URL: String!
   votes: VoteCreateManyInput
 }
@@ -53,10 +53,10 @@ enum CandidateOrderByInput {
   id_DESC
   fullName_ASC
   fullName_DESC
-  RA_ASC
-  RA_DESC
-  Turma_ASC
-  Turma_DESC
+  CPF_ASC
+  CPF_DESC
+  Apartamento_ASC
+  Apartamento_DESC
   URL_ASC
   URL_DESC
 }
@@ -64,8 +64,8 @@ enum CandidateOrderByInput {
 type CandidatePreviousValues {
   id: ID!
   fullName: String!
-  RA: String!
-  Turma: String!
+  CPF: String!
+  Apartamento: String!
   URL: String!
 }
 
@@ -87,16 +87,16 @@ input CandidateSubscriptionWhereInput {
 
 input CandidateUpdateInput {
   fullName: String
-  RA: String
-  Turma: String
+  CPF: String
+  Apartamento: String
   URL: String
   votes: VoteUpdateManyInput
 }
 
 input CandidateUpdateManyMutationInput {
   fullName: String
-  RA: String
-  Turma: String
+  CPF: String
+  Apartamento: String
   URL: String
 }
 
@@ -129,34 +129,34 @@ input CandidateWhereInput {
   fullName_not_starts_with: String
   fullName_ends_with: String
   fullName_not_ends_with: String
-  RA: String
-  RA_not: String
-  RA_in: [String!]
-  RA_not_in: [String!]
-  RA_lt: String
-  RA_lte: String
-  RA_gt: String
-  RA_gte: String
-  RA_contains: String
-  RA_not_contains: String
-  RA_starts_with: String
-  RA_not_starts_with: String
-  RA_ends_with: String
-  RA_not_ends_with: String
-  Turma: String
-  Turma_not: String
-  Turma_in: [String!]
-  Turma_not_in: [String!]
-  Turma_lt: String
-  Turma_lte: String
-  Turma_gt: String
-  Turma_gte: String
-  Turma_contains: String
-  Turma_not_contains: String
-  Turma_starts_with: String
-  Turma_not_starts_with: String
-  Turma_ends_with: String
-  Turma_not_ends_with: String
+  CPF: String
+  CPF_not: String
+  CPF_in: [String!]
+  CPF_not_in: [String!]
+  CPF_lt: String
+  CPF_lte: String
+  CPF_gt: String
+  CPF_gte: String
+  CPF_contains: String
+  CPF_not_contains: String
+  CPF_starts_with: String
+  CPF_not_starts_with: String
+  CPF_ends_with: String
+  CPF_not_ends_with: String
+  Apartamento: String
+  Apartamento_not: String
+  Apartamento_in: [String!]
+  Apartamento_not_in: [String!]
+  Apartamento_lt: String
+  Apartamento_lte: String
+  Apartamento_gt: String
+  Apartamento_gte: String
+  Apartamento_contains: String
+  Apartamento_not_contains: String
+  Apartamento_starts_with: String
+  Apartamento_not_starts_with: String
+  Apartamento_ends_with: String
+  Apartamento_not_ends_with: String
   URL: String
   URL_not: String
   URL_in: [String!]
@@ -177,7 +177,7 @@ input CandidateWhereInput {
 
 input CandidateWhereUniqueInput {
   id: ID
-  RA: String
+  CPF: String
 }
 
 scalar Long
@@ -243,7 +243,7 @@ type User {
   id: ID!
   firstName: String!
   lastName: String!
-  RA: String!
+  CPF: String!
   password: String!
   level: String!
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
@@ -259,7 +259,7 @@ input UserCreateInput {
   id: ID
   firstName: String!
   lastName: String!
-  RA: String!
+  CPF: String!
   password: String!
   level: String
   votes: VoteCreateManyInput
@@ -277,8 +277,8 @@ enum UserOrderByInput {
   firstName_DESC
   lastName_ASC
   lastName_DESC
-  RA_ASC
-  RA_DESC
+  CPF_ASC
+  CPF_DESC
   password_ASC
   password_DESC
   level_ASC
@@ -289,7 +289,7 @@ type UserPreviousValues {
   id: ID!
   firstName: String!
   lastName: String!
-  RA: String!
+  CPF: String!
   password: String!
   level: String!
 }
@@ -313,7 +313,7 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   firstName: String
   lastName: String
-  RA: String
+  CPF: String
   password: String
   level: String
   votes: VoteUpdateManyInput
@@ -322,7 +322,7 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   firstName: String
   lastName: String
-  RA: String
+  CPF: String
   password: String
   level: String
 }
@@ -370,20 +370,20 @@ input UserWhereInput {
   lastName_not_starts_with: String
   lastName_ends_with: String
   lastName_not_ends_with: String
-  RA: String
-  RA_not: String
-  RA_in: [String!]
-  RA_not_in: [String!]
-  RA_lt: String
-  RA_lte: String
-  RA_gt: String
-  RA_gte: String
-  RA_contains: String
-  RA_not_contains: String
-  RA_starts_with: String
-  RA_not_starts_with: String
-  RA_ends_with: String
-  RA_not_ends_with: String
+  CPF: String
+  CPF_not: String
+  CPF_in: [String!]
+  CPF_not_in: [String!]
+  CPF_lt: String
+  CPF_lte: String
+  CPF_gt: String
+  CPF_gte: String
+  CPF_contains: String
+  CPF_not_contains: String
+  CPF_starts_with: String
+  CPF_not_starts_with: String
+  CPF_ends_with: String
+  CPF_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -418,12 +418,12 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
-  RA: String
+  CPF: String
 }
 
 type Vote {
   id: ID!
-  candidateRA: String!
+  CPF: String!
   userId: String!
 }
 
@@ -435,7 +435,7 @@ type VoteConnection {
 
 input VoteCreateInput {
   id: ID
-  candidateRA: String!
+  CPF: String!
   userId: String!
 }
 
@@ -452,15 +452,15 @@ type VoteEdge {
 enum VoteOrderByInput {
   id_ASC
   id_DESC
-  candidateRA_ASC
-  candidateRA_DESC
+  CPF_ASC
+  CPF_DESC
   userId_ASC
   userId_DESC
 }
 
 type VotePreviousValues {
   id: ID!
-  candidateRA: String!
+  CPF: String!
   userId: String!
 }
 
@@ -479,20 +479,20 @@ input VoteScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  candidateRA: String
-  candidateRA_not: String
-  candidateRA_in: [String!]
-  candidateRA_not_in: [String!]
-  candidateRA_lt: String
-  candidateRA_lte: String
-  candidateRA_gt: String
-  candidateRA_gte: String
-  candidateRA_contains: String
-  candidateRA_not_contains: String
-  candidateRA_starts_with: String
-  candidateRA_not_starts_with: String
-  candidateRA_ends_with: String
-  candidateRA_not_ends_with: String
+  CPF: String
+  CPF_not: String
+  CPF_in: [String!]
+  CPF_not_in: [String!]
+  CPF_lt: String
+  CPF_lte: String
+  CPF_gt: String
+  CPF_gte: String
+  CPF_contains: String
+  CPF_not_contains: String
+  CPF_starts_with: String
+  CPF_not_starts_with: String
+  CPF_ends_with: String
+  CPF_not_ends_with: String
   userId: String
   userId_not: String
   userId_in: [String!]
@@ -529,17 +529,17 @@ input VoteSubscriptionWhereInput {
 }
 
 input VoteUpdateDataInput {
-  candidateRA: String
+  CPF: String
   userId: String
 }
 
 input VoteUpdateInput {
-  candidateRA: String
+  CPF: String
   userId: String
 }
 
 input VoteUpdateManyDataInput {
-  candidateRA: String
+  CPF: String
   userId: String
 }
 
@@ -556,7 +556,7 @@ input VoteUpdateManyInput {
 }
 
 input VoteUpdateManyMutationInput {
-  candidateRA: String
+  CPF: String
   userId: String
 }
 
@@ -591,20 +591,20 @@ input VoteWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  candidateRA: String
-  candidateRA_not: String
-  candidateRA_in: [String!]
-  candidateRA_not_in: [String!]
-  candidateRA_lt: String
-  candidateRA_lte: String
-  candidateRA_gt: String
-  candidateRA_gte: String
-  candidateRA_contains: String
-  candidateRA_not_contains: String
-  candidateRA_starts_with: String
-  candidateRA_not_starts_with: String
-  candidateRA_ends_with: String
-  candidateRA_not_ends_with: String
+  CPF: String
+  CPF_not: String
+  CPF_in: [String!]
+  CPF_not_in: [String!]
+  CPF_lt: String
+  CPF_lte: String
+  CPF_gt: String
+  CPF_gte: String
+  CPF_contains: String
+  CPF_not_contains: String
+  CPF_starts_with: String
+  CPF_not_starts_with: String
+  CPF_ends_with: String
+  CPF_not_ends_with: String
   userId: String
   userId_not: String
   userId_in: [String!]

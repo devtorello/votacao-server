@@ -16,7 +16,7 @@ const allCandidates = (parent, args, ctx) => ctx.prisma.candidates()
  * @param {*} args Arguments passed to the API
  * @param {*} ctx Context in order to use prisma
  */
-const fetchCandidate = (parent, args, ctx) => ctx.prisma.candidate({ politicNumber: args.politicNumber })
+const fetchCandidate = (parent, args, ctx) => ctx.prisma.candidate({ CPF: args.CPF })
 
 // SPACE RESERVED: MUTATIONS
 

@@ -18,7 +18,7 @@ const allUsers = (parent, args, ctx) => ctx.prisma.users()
  * @param {*} args Arguments passed to the API
  * @param {*} ctx Context in order to use prisma
  */
-const fetchUser = (parent, args, ctx) => ctx.prisma.user({ RA: args.RA })
+const fetchUser = (parent, args, ctx) => ctx.prisma.user({ RA: args.CPF })
 
 // SPACE RESERVED: MUTATIONS
 
@@ -49,17 +49,17 @@ const signUp = async (parent, args, ctx) => {
  * @param {*} ctx Context in order to use prisma
  */
 const signIn = async (parent, args, ctx) => {
-    const user = await ctx.prisma.user({ RA: args.RA })
+    const user = await ctx.prisma.user({ CPF: args.CPF })
 
     if (!user)
-        throw new Error('Invalid RA!')
+        throw new Error('Invalid CPF!')
 
     if (!await comparePass(args.password, user.password))
         throw new Error('Invalid password!')
 
     return {
-        token: getToken(user.id, user.RA),
-        RA: user.RA
+        token: getToken(user.id, user.CPF),
+        CPF: user.CPF
     }
 }
 
