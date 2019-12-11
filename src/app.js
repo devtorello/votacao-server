@@ -17,14 +17,13 @@ const server = new ApolloServer({
     },
     context: ({ req }) => {
         const token = req.headers.authorization || null
-        
         let data = token ? decodeToken(token.split(' ')[1], 'voting-system') : null
         
         return {
             ...req,
             prisma,
-            id: data.id,
-            ra: data.ra
+            id: data ? data.id : undefined,
+            ra: data ? data.ra : undefined
         }
     }
 })
