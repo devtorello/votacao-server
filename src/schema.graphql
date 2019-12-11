@@ -22,7 +22,7 @@ type Mutation {
   createCandidate(fullName: String!, RA: String!, Turma: String!, URL: String!): Candidate
 
   # Object Votes
-  newVote(candidateRA: String!, userId: String!): Vote
+  newVote(candidateRA: String!): Vote
 }
 
 type User {

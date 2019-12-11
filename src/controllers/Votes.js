@@ -1,5 +1,5 @@
 const newVote = async (parent, args, ctx) => {
-    const vote = await ctx.prisma.createVote({ ...args })
+    const vote = await ctx.prisma.createVote({ candidateRA: args.candidateRA, userId: ctx.id })
 
     if (!vote)
         throw new Error('Invalid data!')
