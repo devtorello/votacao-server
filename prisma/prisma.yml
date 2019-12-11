@@ -1,4 +1,4 @@
-endpoint: http://localhost:4466/voting
+endpoint: http://localhost:4466/voting/condominio
 datamodel: datamodel.prisma
 databaseType: document
 

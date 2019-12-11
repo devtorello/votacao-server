@@ -2,7 +2,7 @@ type User {
   id: ID! @id
   firstName: String!
   lastName: String!
-  RA: String! @unique
+  CPF: String! @unique
   password: String!
   level: String! @default(value: "USER")
   votes: [Vote] @relation(link: INLINE)
@@ -11,14 +11,14 @@ type User {
 type Candidate {
   id: ID! @id
   fullName: String!
-  RA: String! @unique
-  Turma: String!
+  CPF: String! @unique
+  Apartamento: String!
   URL: String!
   votes: [Vote] @relation(link: INLINE)
 }
 
 type Vote {
   id: ID! @id
-  candidateRA: String! 
+  CPF: String! 
   userId: String! @unique
 }
