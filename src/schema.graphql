@@ -47,7 +47,7 @@ type Candidate {
 type Vote {
   id: ID!
   candidateRA: String!
-  userId: String!
+  userId: String
 }
 
 type AuthResponse {
